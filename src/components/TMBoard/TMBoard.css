@@ -1,0 +1,80 @@
+
+.TMBoard-container {
+    border: 2px solid #d4d4d4;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.table-header {
+    background-color: #6dbbc1;
+    border-radius: 4px;
+}
+
+.backlog {
+    display: flex;
+    flex-direction: column;
+}
+
+.draggable:hover {
+    cursor: grab;
+}
+
+.table-container {
+    flex-grow: 5;
+}
+
+.quick-form {
+    margin: 4px;
+}
+.issue-form-container {
+    flex-grow: 2;
+    background-color: #808080;
+    border-radius: 8px;
+}
+
+.issue-detail-container {
+    flex-grow: 3;
+    margin-right: 8px;
+    background-color: #808080;
+    border-radius: 8px;
+    padding: 4px;
+
+}
+
+.form-priority-container {
+    margin: 4px 0;
+}
+.issue-title {
+    display: inline-block;
+}
+
+.timestamp {
+    display: inline-block;
+}
+
+.title-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-timestamp {
+    font-size: 1.5vmin;
+    color: black;
+}
+
+.comment-form-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.comment-form-input {
+    flex-grow: 3;
+    margin-right: 4px;
+}
+.comment-btn-container {
+}
