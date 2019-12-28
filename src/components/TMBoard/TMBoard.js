@@ -1,6 +1,6 @@
 import React from 'react';
 import './TMBoard.css'
-const TODO_ENUM = '0';
+import { FirebaseContext } from '../Firebase';
 const PRIORITIES = { '0': 0, '1': 1, '2': 2, '3': 3 };
 const PRIORITIES_STRING = { '0':'Unknown', '1':'Low', '2':'Medium', '3':'High'}
 const STATUS_STRING = {'0':'Todo', '1':'In Progress', '2':'In Review', '3': 'Closed'};
@@ -102,7 +102,7 @@ class TMBoard extends React.Component {
         let priority = ev.dataTransfer.getData('priority');
 
         let issues = this.state.issues.filter(issue => {
-            if (issue.id == id) {
+            if (issue.id === id) {
                 issue.status = cat;
                 console.log('New status: ' + issue.status);
                 fetch(
@@ -183,7 +183,7 @@ class TMBoard extends React.Component {
      */
     filterIssueHandler() {
         const filter = this.state.filter;
-        if (filter != '') {
+        if (filter !== '') {
             fetch('http://142.66.140.65:8888/issues?sort=' + filter)
             .then(resp => resp.json())
             .then(data => {
@@ -248,7 +248,7 @@ class TMBoard extends React.Component {
         if (this.state.issues !== null) {
 
             this.state.issues.forEach(i => {
-                if (i.status == '0') {
+                if (i.status === '0') {
                     issues.todo.push(
                         <tr key={i.id}>
                         <td
@@ -262,7 +262,7 @@ class TMBoard extends React.Component {
                         </td>
                     </tr>
                 );
-            } else if (i.status == '1') {
+            } else if (i.status === '1') {
                 issues.inProgress.push(
                     <tr key={i.id}>
                         <td
@@ -276,7 +276,7 @@ class TMBoard extends React.Component {
                         </td>
                     </tr>
                 );
-            } else if (i.status == '2') {
+            } else if (i.status === '2') {
                 issues.inReview.push(
                     <tr key={i.id}>
                         <td
@@ -290,7 +290,7 @@ class TMBoard extends React.Component {
                         </td>
                     </tr>
                 );
-            } else if (i.status == '3') {
+            } else if (i.status === '3') {
                 issues.completed.push(
                     <tr key={i.id}>
                         <td
@@ -309,7 +309,9 @@ class TMBoard extends React.Component {
     }
 
         return (
-            <div>
+            <FirebaseContext.Consumer>
+                {firebase => {
+            return <div>
                 <h2 className="page-head">Issues</h2>
                 <div className="filter-container">
 
@@ -396,7 +398,7 @@ class TMBoard extends React.Component {
                         </table>
                     </div>
                     {/* Load Issue Form or Issue Info */}
-                    {this.state.selectedIssueId != '' ? (
+                    {this.state.selectedIssueId !== '' ? (
                         <IssueInfo
                             id={this.state.selectedIssueId}
                             resetIssueForm={this.issueInfoCallback}
@@ -407,6 +409,8 @@ class TMBoard extends React.Component {
                     )}
                 </div>
             </div>
+            }}
+            </FirebaseContext.Consumer>
         );
     }
 }

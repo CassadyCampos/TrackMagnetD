@@ -1,5 +1,6 @@
-import app from '/firebase/app'
-import 'firebase/auth';
+import app from 'firebase/app'
+import 'firebase/auth'
+
 const firebaseConfig = {
     apiKey: "AIzaSyBmShph92-rnUKeinpcKmUZB9RjeoVAaHg",
     authDomain: "track-magnet.firebaseapp.com",
