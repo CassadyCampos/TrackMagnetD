@@ -1,4 +1,5 @@
 import React from 'react';
+// import bootstrap from 'bootstrap';
 import './TMBoard.css'
 import { FirebaseContext } from '../Firebase';
 const PRIORITIES = { '0': 0, '1': 1, '2': 2, '3': 3 };

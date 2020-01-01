@@ -8,6 +8,7 @@ const SignUpPage = () => (
     <div>
         <h1>SignUp</h1>
         <SignUpForm />
+        <SignInLink />
     </div>
 );
 
@@ -105,11 +106,11 @@ class SignUpFormBase extends Component {
     }
 }
 
-// const SignUpLink = () => (
-//     <div>
-//         Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-//     </div>
-// );
+const SignInLink = () => (
+    <div>
+        Already have an account? <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+    </div>
+);
 
 const SignUpForm = compose(withRouter, withFirebase)(SignUpFormBase);
 export default SignUpPage;

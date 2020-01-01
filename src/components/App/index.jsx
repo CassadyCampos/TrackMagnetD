@@ -14,7 +14,7 @@ const App = () => (
         {/* <Route exact path={ROUTES.LANDING} component={LandingPage} /> */}
         <Route path={ROUTES.TMBOARD} component={TMBoard} />
         <Route path={ROUTES.SIGN_UP} component={SignUpForm} />
-        <Router path ={ROUTES.SIGN_IN} component={SignInForm} />
+        <Route path ={ROUTES.SIGN_IN} component={SignInForm} />
     </Router>
 );
 
