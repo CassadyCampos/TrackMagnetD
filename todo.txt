@@ -1,0 +1,2 @@
+1. Fix user sign in
+2. Move firebase config to private file

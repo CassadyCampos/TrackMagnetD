@@ -44,11 +44,20 @@ class SignUpFormBase extends Component {
     };
 
     submitSignUp = e => {
-        const { password, password2, email } = this.state;
+        const { password, password2, email, username } = this.state;
+
         if (password === password2) {
             this.props.firebase
                 .doCreateUserWithEmailAndPassword(email, password)
                 .then(authUser => {
+                    return this.props.firebase
+                    .user(authUser.user.uid)
+                    .set({
+                        username,
+                        email
+                    });
+                })
+                .then(() => {
                     this.setState({ ...INITIAL_STATE });
                     this.props.history.push(ROUTES.LANDING);
                 })
