@@ -2,11 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SignOutButton from '../SignOut/SignOut';
 import * as ROUTES from '../../constants/routes';
+import { AuthUserContext } from '../Session';
 
-const checkUserSignIn = () => true;
-
-const Navigation = ({ authUser }) => (
-    <div>{authUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>
+const Navigation = () => (
+    // console.log(authUser),
+    <div>
+        <AuthUserContext.Consumer>
+            {authUser =>
+                authUser ?  <NavigationAuth /> : <NavigationNonAuth />
+            }
+        </AuthUserContext.Consumer>
+    </div>
 );
 
 const NavigationAuth = () => (
@@ -67,7 +73,7 @@ const NavigationNonAuth = () => (
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-                <Link to={ROUTES.LANDING}>Landing</Link>
+                <Link to={ROUTES.LANDING}>Lakknding</Link>
             </li>
             <li className="nav-item">
                 <Link to={ROUTES.SIGN_UP}>Sign Up</Link>

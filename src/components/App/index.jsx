@@ -6,8 +6,9 @@ import SignUpForm from '../SignUp/SignUp';
 import SignInForm from '../SignIn/SignIn';
 
 import * as ROUTES from '../../constants/routes';
-import { withFirebase } from '../Firebase'
-import { AuthUserContext } from '../Session'
+import { withFirebase } from '../Firebase';
+import { AuthUserContext } from '../Session';
+import { withAuthentication } from '../Session';
 
 class App extends Component {
     constructor(props) {
@@ -15,16 +16,17 @@ class App extends Component {
 
         this.state = {
             authUser: null
-        }
+        };
     }
 
     componentDidMount() {
-        this.props.firebase.auth.onAuthStateChanged(authUser => {
-            authUser ? this.setState({ authUser })
-            : this.setState({authUser: null});
+        this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
+            authUser
+                ? this.setState({ authUser })
+                : this.setState({ authUser: null });
         });
     }
-    
+
     componentWillUnmount() {
         this.listener();
     }
@@ -44,4 +46,4 @@ class App extends Component {
     }
 }
 
-export default withFirebase(App);
+export default withAuthentication(App);
