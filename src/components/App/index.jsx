@@ -1,21 +1,47 @@
-import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Navigation from '../Navigation/Navigation'
-import TMBoard from '../TMBoard/TMBoard'
-import SignUpForm from '../SignUp/SignUp'
-import SignInForm from '../SignIn/SignIn'
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Navigation from '../Navigation/Navigation';
+import TMBoard from '../TMBoard/TMBoard';
+import SignUpForm from '../SignUp/SignUp';
+import SignInForm from '../SignIn/SignIn';
 
-import * as ROUTES from '../../constants/routes'
+import * as ROUTES from '../../constants/routes';
+import { withFirebase } from '../Firebase'
+import { AuthUserContext } from '../Session'
 
-const App = () => (
-    <Router>
-        <Navigation />
-        <hr />
-        {/* <Route exact path={ROUTES.LANDING} component={LandingPage} /> */}
-        <Route path={ROUTES.TMBOARD} component={TMBoard} />
-        <Route path={ROUTES.SIGN_UP} component={SignUpForm} />
-        <Route path ={ROUTES.SIGN_IN} component={SignInForm} />
-    </Router>
-);
+class App extends Component {
+    constructor(props) {
+        super(props);
 
-export default App;
+        this.state = {
+            authUser: null
+        }
+    }
+
+    componentDidMount() {
+        this.props.firebase.auth.onAuthStateChanged(authUser => {
+            authUser ? this.setState({ authUser })
+            : this.setState({authUser: null});
+        });
+    }
+    
+    componentWillUnmount() {
+        this.listener();
+    }
+
+    render() {
+        return (
+            <AuthUserContext.Provider value={this.state.authUser}>
+                <Router>
+                    <Navigation />
+                    <hr />
+                    <Route path={ROUTES.TMBOARD} component={TMBoard} />
+                    <Route path={ROUTES.SIGN_UP} component={SignUpForm} />
+                    <Route path={ROUTES.SIGN_IN} component={SignInForm} />
+                </Router>
+            </AuthUserContext.Provider>
+        );
+    }
+}
+
+export default withFirebase(App);

@@ -1,4 +1,5 @@
 export const LANDING = '/'
+export const ADMIN = '/admin'
 export const TMBOARD = '/board'
 export const SIGN_UP = '/signup'
 export const SIGN_IN = '/signin'
