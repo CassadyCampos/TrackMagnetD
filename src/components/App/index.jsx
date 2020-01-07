@@ -4,9 +4,10 @@ import Navigation from '../Navigation/Navigation';
 import TMBoard from '../TMBoard/TMBoard';
 import SignUpForm from '../SignUp/SignUp';
 import SignInForm from '../SignIn/SignIn';
+import AdminPage from '../Admin/AdminPage'
 
 import * as ROUTES from '../../constants/routes';
-import { withFirebase } from '../Firebase';
+// import { withFirebase } from '../Firebase';
 import { AuthUserContext } from '../Session';
 import { withAuthentication } from '../Session';
 
@@ -40,6 +41,7 @@ class App extends Component {
                     <Route path={ROUTES.TMBOARD} component={TMBoard} />
                     <Route path={ROUTES.SIGN_UP} component={SignUpForm} />
                     <Route path={ROUTES.SIGN_IN} component={SignInForm} />
+                    <Route path={ROUTES.ADMIN} component={AdminPage} />
                 </Router>
             </AuthUserContext.Provider>
         );
