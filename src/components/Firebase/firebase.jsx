@@ -32,7 +32,11 @@ class Firebase {
 
     // User API
     user = uid => this.db.ref(`users/${uid}`)
-    users = () => this.db.ref(`users`)
+    users = () => {
+        console.log("this is called");
+        console.log(this.db.ref('t4PDQnmqoJVe1n1faGKQQACqVlH2'));
+        return this.db.ref('users');
+    }
 
 }
 

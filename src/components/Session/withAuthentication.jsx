@@ -1,6 +1,8 @@
 import React from 'react'
 
 import AuthUserContext from './context'
+import { inject } from 'mobx-react'
+import { compose } from 'recompose'
 import { withFirebase } from '../Firebase'
 
 const withAuthentication = Component => {
@@ -36,7 +38,8 @@ const withAuthentication = Component => {
             )
         }
     }
-    return withFirebase(WithAuthentication);
+    return compose(withFirebase,
+        inject('sessionStore'),)(WithAuthentication);
 };
 
 export default withAuthentication 

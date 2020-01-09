@@ -7,7 +7,6 @@ import SignInForm from '../SignIn/SignIn';
 import AdminPage from '../Admin/AdminPage'
 
 import * as ROUTES from '../../constants/routes';
-// import { withFirebase } from '../Firebase';
 import { AuthUserContext } from '../Session';
 import { withAuthentication } from '../Session';
 
