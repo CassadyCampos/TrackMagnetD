@@ -10,6 +10,8 @@ import * as ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../Session';
 import { withAuthentication } from '../Session';
 
+import "./App.css"
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -35,12 +37,15 @@ class App extends Component {
         return (
             <AuthUserContext.Provider value={this.state.authUser}>
                 <Router>
+                    <div className='app-container'>
+
                     <Navigation />
                     <hr />
                     <Route path={ROUTES.TMBOARD} component={TMBoard} />
                     <Route path={ROUTES.SIGN_UP} component={SignUpForm} />
                     <Route path={ROUTES.SIGN_IN} component={SignInForm} />
                     <Route path={ROUTES.ADMIN} component={AdminPage} />
+                    </div>
                 </Router>
             </AuthUserContext.Provider>
         );

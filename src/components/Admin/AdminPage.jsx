@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {withFirebase} from '../Firebase'
+import React, { Component } from 'react';
+import { withFirebase } from '../Firebase';
 
 class AdminPage extends Component {
     constructor(props) {
@@ -7,7 +7,7 @@ class AdminPage extends Component {
 
         this.state = {
             loading: false,
-            users: ["tests",],
+            users: ['tests']
         };
     }
 
@@ -17,14 +17,14 @@ class AdminPage extends Component {
         this.props.firebase.users().on('value', snapshot => {
             const usersObject = snapshot.val();
             const usersList = Object.keys(usersObject).map(key => ({
-              ...usersObject[key],
-              uid: key,
+                ...usersObject[key],
+                uid: key
             }));
             this.setState({
-              users: usersList,
-              loading: false,
+                users: usersList,
+                loading: false
             });
-          });
+        });
     }
 
     componentWillUnmount() {
@@ -37,27 +37,25 @@ class AdminPage extends Component {
         return (
             <div>
                 <h1>Admin</h1>
-
-                {loading && <div>Loading ...</div>}
-
-                <UsersList users={users} />
+                {loading ? <div>...Loading</div> : <UsersList users={users} />}
             </div>
         );
     }
-};
+}
 
 const UsersList = ({ users }) => (
     <ul>
         {users.map(user => (
             <li key={user.uid}>
+                {console.log(user.uid)}
                 <span>
-                    <strong>ID:</strong> {user.uid}
+                    <strong>Username:</strong> {user.username}
                 </span>
                 <span>
                     <strong>E-mail:</strong> {user.email}
                 </span>
                 <span>
-                    <strong>Username:</strong> {user.username}
+                    <strong>ID:</strong> {user.uid}
                 </span>
             </li>
         ))}

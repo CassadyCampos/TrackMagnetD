@@ -4,11 +4,15 @@ import { compose } from 'recompose';
 import * as ROUTES from '../../constants/routes';
 import { withFirebase } from '../Firebase';
 
+import './SignIn.css'
+
 const SignInPage = () => (
-    <div>
+    <div className="page-container">
+        <div className="sign-in-container">
         <h1>Sign In</h1>
         <SignInForm />
         <SignUpLink />
+        </div>
     </div>
 );
 
