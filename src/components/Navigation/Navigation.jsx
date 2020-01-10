@@ -72,7 +72,7 @@ const NavigationNonAuth = () => (
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-                <Link to={ROUTES.LANDING}>Lakknding</Link>
+                <Link to={ROUTES.LANDING}>Landing</Link>
             </li>
             <li className="nav-item">
                 <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
